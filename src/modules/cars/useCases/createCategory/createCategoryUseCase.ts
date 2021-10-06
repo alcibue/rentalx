@@ -7,8 +7,8 @@ interface IRequest {
 
 class CreateCategoryUseCase {
     constructor( private categoriesRepository:ICategoriesRepository){}
-    execute({ name, description}: IRequest): void {
-        const categoriesAlredyExists = this.categoriesRepository.findByName(name);
+    async execute({ name, description}: IRequest): Promise<void> {
+        const categoriesAlredyExists = await this.categoriesRepository.findByName(name);
 
         if (categoriesAlredyExists) {
             throw new Error("Category alredy exists")
