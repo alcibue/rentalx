@@ -1,74 +1,114 @@
 {
-
-"openapi": "3.0.0",
- "info":{
-        "title":"RentalX Documentation",
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RentalX Documentation",
         "description": "This is an API Rent",
         "version": "1.0.0",
         "contact": {
-            "email":"bueno-jr@hotmail.com"
+            "email": "bueno-jr@hotmail.com"
         }
-    
- },
- "paths": {
-   "/categories": {
-     "post": {
-         "tags":["Category"],
-       "summary":  "Create a category",
-         "description":"Create a new category",
-         "requestBody":{
-           "content":{
-             "application/json": {
-               "schema":{
-                 "type":"object",
-                 "properties":{
-                   "name":{
-                     "type":"string"
-                   }
-                 },
-                 "example":{
-                   "name":"Category name sample",
-                    "description": "Category description sample"
-                 }
-               }   
-             }
-           } 
-        },
-        "responses": {
-            "201": {
-                "description": "Created"
-            },
-            "500":{
-                "description":"Category already existis"
-            }
-        }
-      },
-      "get": {
-          "tags":["Category"],
-          "sumary":"List all categories",
-          "description":"List all categories",
-          "responses":{
-              "200":{
-                "description":"Sucess",
-                "content":{
-                    "application/json":{
-                        "schema":{
-                            "type":"array",
-                            "items":{
-                                "types": "object",
-                                "properts":{
-                                    "name":"string"
+    },
+    "paths": {
+        "/categories": {
+            "post": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create a category",
+                "description": "Create a new category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
                                 },
-                                "description":{
-                                    "type":"string"
+                                "example": {
+                                    "name": "Category name sample",
+                                    "description": "Category description sample"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Category already existis"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "sumary": "List all categories",
+                "description": "List all categories",
+                "responses": {
+                    "200": {
+                        "description": "Sucess",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "types": "object",
+                                        "properts": {
+                                            "name": "string"
+                                        },
+                                        "description": {
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
                 }
-              }
-          }
-      } 
+            }
+        },
+        "/specifications":{
+            "post":{
+                "tags":["Specifications"],
+                "summary":"Create a specification",
+                "description":"Create a new specification",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "$ref": "#/definitions/Specification"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description":"Specification already existis"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Specification": {
+            "type": "object",
+            "properties":{
+                "name":{
+                    "type":"string"
+                },
+                "description": {
+                    "type":"string"
+                }
+            }
+        }
     }
-  }
-} 
+
+}
